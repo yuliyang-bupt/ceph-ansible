@@ -12,7 +12,7 @@ else
 fi
 CEPH_BRANCH=${CEPH_BRANCH:-$CEPH_BRANCH_DEFAULT}
 SUBNET=$(ip r | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}/[0-9]\{1,2\}' | head -1)
-MON_IP=$(ip -4 -o a | awk '/eth/ { sub ("/..", "", $4); print $4 }')
+MON_IP=$(ip -4 -o a | awk '/eth|ens|eno|enp/ { sub ("/..", "", $4); print $4 }')
 
 if [[ $EUID -ne 0 ]]; then
     echo "You are NOT running this script as root."
